@@ -48,13 +48,12 @@ def get2017CSO() -> pd.DataFrame:
     risk = []
     gender = []
     age_basis = []
-    ids = []
     # LOADED COMPOSITE GENDER BLENDED
     grouping.extend(["loaded composite gender_blended"] * 10)
     risk.extend(["composite"] * 10)
     gender.extend([f"{percent}%_male" for percent in [20, 40, 50, 60, 80]] * 2)
     age_basis.extend(["ANB"] * 5 + ["ALB"] * 5)
-    ids.extend(list(range(3277, 3287)))
+    ids = list(list(range(3277, 3287)))
     # LOADED COMPOSITE GENDER DISTINCT
     grouping.extend(["loaded composite gender_distinct"] * 4)
     risk.extend(["composite"] * 4)

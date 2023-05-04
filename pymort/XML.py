@@ -133,11 +133,11 @@ def getAxisVals(axis: ET.Element) -> pd.DataFrame:
         colTs = ts
         df = pd.DataFrame({"Age": [rowT] * len(vals), "Duration": colTs, "vals": vals})
         df.set_index(["Age", "Duration"], inplace=True)
-        return df
     else:  # one dimensional
         df = pd.DataFrame({"Age": ts, "vals": vals})
         df.set_index("Age", inplace=True)
-        return df
+
+    return df
 
 
 def createValues(table: ET.Element) -> pd.DataFrame:
@@ -145,9 +145,7 @@ def createValues(table: ET.Element) -> pd.DataFrame:
     Take the top level `Table` tag and return a list
     """
     axes = table.findall("./Values/Axis")
-    dfs = []
-    for axis in axes:
-        dfs.append(getAxisVals(axis))
+    dfs = [getAxisVals(axis) for axis in axes]
     return pd.concat(dfs)
 
 
